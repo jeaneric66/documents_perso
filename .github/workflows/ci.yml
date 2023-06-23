@@ -8,8 +8,7 @@ jobs:
     runs-on: MacOs
     steps:
       uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+        
       - run: pip install --upgrade pip
       - run: pip install mkdocs-material
       - run: pip install mkdocs-jupyter
