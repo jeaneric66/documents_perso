@@ -1,21 +1,15 @@
-
 name: ci
 on:
   push:
     branches:
-      - main
+      - master
 jobs:
   deploy:
-    runs-on: MacOs
-    steps:
-      uses: actions/checkout@v2        
-      - run: pip install --upgrade pip
-      - run: pip install mkdocs-material
-      - run: pip install mkdocs-jupyter
-      
-      # C'est ici qu'il faut ajouter si besoin
-      # les instructions pour installer avec pip
-      # les autres plugins MkDocs ou extensions MarkDown
-      # souhaités pour le déploiement du site...
-
-      - run: mkdocs gh-deploy --force
+    runs-on: ubuntu-latest
+  steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: 3.x
+    - run: pip install mkdocs-material
+    - run: mkdocs gh-deploy --force --clean --config-file ./mkdocs.yml --site-dir ./product1
